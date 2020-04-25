@@ -21,28 +21,28 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
     <Route Url="/summary/:production" Method="GET" Call="Summary"/>
 
     <!--Get List of all productions in current namespace and their statuses ++ -->
-    <Route Url="/production" Method="GET" Call="ProductionList"/>
+    <Route Url="/productions" Method="GET" Call="ProductionList"/>
 
     <!--Get Production Settings and production Items -->
-    <Route Url="/production/:production" Method="GET" Call="GetProductionSettings"/>
+    <Route Url="/productions/:production" Method="GET" Call="GetProductionSettings"/>
 
     <!--Create new Production-->
-    <Route Url="/production/:production" Method="POST" Call="AddProduction"/>
+    <Route Url="/productions/:production" Method="POST" Call="AddProduction"/>
 
     <!--Update Production Settings-->
-    <Route Url="/production/:production" Method="PUT" Call="UpdateProductionSettings"/>
+    <Route Url="/productions/:production" Method="PUT" Call="UpdateProductionSettings"/>
 
     <!--Get Item Settings-->
-    <Route Url="/item/:production/:item" Method="GET" Call="GetItemSettings"/>
+    <Route Url="/items/:production/:item" Method="GET" Call="GetItemSettings"/>
 
     <!--Add Item to the Production-->
-    <Route Url="/item/:production/:item" Method="POST" Call="AddItem"/>
+    <Route Url="/items/:production/:item" Method="POST" Call="AddItem"/>
     
     <!--Update Item Settings-->
-    <Route Url="/item/:production/:item" Method="PUT" Call="UpdateItemSettings"/>
+    <Route Url="/items/:production/:item" Method="PUT" Call="UpdateItemSettings"/>
 
     <!--Delete Item -->
-    <Route Url="/item/:production/:item" Method="DELETE" Call="DeleteItem"/>
+    <Route Url="/items/:production/:item" Method="DELETE" Call="DeleteItem"/>
 
 
     <Route Url="/_ping" Method="GET" Call="Ping" />
