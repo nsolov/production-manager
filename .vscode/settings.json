@@ -4,11 +4,12 @@
         "Dockerfile*": "dockerfile",
       },
     "objectscript.conn" :{
-      "ns": "IRISAPP",
+      "ns": "USER",
+      "port":9098,
       "active": true,
       "docker-compose": {
         "service": "iris",
-        "internalPort": 52773
+        "internalPort": 9098
       }
     },
     "objectscript.conn.active": true,
