@@ -1,4 +1,4 @@
-Class Demo.Message Extends Ens.Request
+Class RestProduction.Demo.Message Extends Ens.Request
 {
 
 Property currency As %String;

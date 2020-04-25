@@ -3,7 +3,7 @@
   <Document name="production-manager.ZPM">
     <Module>
       <Name>production-manager</Name>
-      <Version>1.0.0</Version>
+      <Version>1.0.3</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="RestProduction.PKG"/>
@@ -12,7 +12,7 @@
         Url="/production"
         Recurse="1"
         MatchRoles=":{$dbrole}"
-        PasswordAuthEnabled="0"
+        PasswordAuthEnabled="1"
         UnauthenticatedEnabled="0"
         DispatchClass="RestProduction.REST"
         ServeFiles="1"
