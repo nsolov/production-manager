@@ -277,7 +277,224 @@ Response 200
 }
 ```
 
-# Next steps
+**8. Update Production Settings
+
+PUT Request
+```
+http://localhost:9098/production/productions/RestProduction.Demo.NewProduction
+```
+body:
+```
+{
+  "description": "new demo production",
+  "actor_pool_size": 1,
+  "log_general_trace_events": 0,
+  "testing_enabled": 0,
+}
+```
+
+Response 200
+
+```
+{
+  "name": "RestProduction.Demo.NewProduction",
+  "description": "new demo production",
+  "actor_pool_size": 1,
+  "log_general_trace_events": 0,
+  "testing_enabled": 0,
+  "settings": [
+    {
+      "name": "ShutdownTimeout",
+      "target": "Adapter",
+      "value": "180"
+    }
+  ],
+  "items": []
+}
+```
+
+**9. Add Item to the Production**
+
+POST Request
+```
+http://localhost:9098/production/productions/RestProduction.Demo.NewProduction
+```
+body:
+```
+{
+  "enabled": 1,
+  "pool_size": 1,
+  "class_name": "RestProduction.Demo.Operation"
+}
+```
+
+Response 200
+
+```
+{
+  "name": "NewBusinessOperation",
+  "type": "BusinessOperation",
+  "enabled": 1,
+  "pool_size": 1,
+  "class_name": "RestProduction.Demo.Operation",
+  "comment": "",
+  "schedule": "",
+  "category": "",
+  "alert_groups": "",
+  "disable_error_traps": "",
+  "foreground": 0,
+  "inactivity_timeout": "0",
+  "log_trace_events": 0,
+  "settings": [
+    {
+      "name": "InactivityTimeout",
+      "target": "Host",
+      "value": "0"
+    }
+  ]
+}
+```
+
+**10. Get Item settings**
+
+GET Request
+```
+http://localhost:9098/production/items/RestProduction.Demo.NewProduction/NewBusinessOperation
+```
+
+Response 200
+```
+{
+  "name": "NewBusinessOperation",
+  "type": "BusinessOperation",
+  "enabled": 1,
+  "pool_size": 1,
+  "class_name": "RestProduction.Demo.Operation",
+  "comment": "",
+  "schedule": "",
+  "category": "",
+  "alert_groups": "",
+  "disable_error_traps": "",
+  "foreground": 0,
+  "inactivity_timeout": "0",
+  "log_trace_events": 0,
+  "settings": [
+    {
+      "name": "InactivityTimeout",
+      "target": "Host",
+      "value": "0"
+    },
+    {
+      "name": "RegistryID",
+      "target": "Adapter",
+      "value": ""
+    },
+    {
+      "name": "FilePath",
+      "target": "Adapter",
+      "value": ""
+    },
+    {
+      "name": "FileName",
+      "target": "Host",
+      "value": "out.txt"
+    },
+    <... part of the output is omitted ...>
+    
+  ]
+}
+```
+
+**11. Update Item Settings**
+
+PUT Request
+```
+http://localhost:9098/production/items/RestProduction.Demo.NewProduction/NewBusinessOperation
+```
+body:
+```
+{
+  "pool_size": 2,
+  "class_name": "RestProduction.Demo.Operation",
+  "log_trace_events": 1,
+  "settings": [
+    {
+      "name": "FilePath",
+      "target": "Adapter",
+      "value": "/irisdev/app"
+    },
+    {
+      "name": "FileName",
+      "target": "Host",
+      "value": "newfile.txt"
+    }]}
+```
+
+
+Response 200
+```
+{
+  "name": "NewBusinessOperation",
+  "type": "BusinessOperation",
+  "enabled": 1,
+  "pool_size": 2,
+  "class_name": "RestProduction.Demo.Operation",
+  "comment": "",
+  "schedule": "",
+  "category": "",
+  "alert_groups": "",
+  "disable_error_traps": "",
+  "foreground": 0,
+  "inactivity_timeout": "0",
+  "log_trace_events": 1,
+  "settings": [
+    {
+      "name": "FilePath",
+      "target": "Adapter",
+      "value": "/irisdev/app"
+    },
+    {
+      "name": "FileName",
+      "target": "Host",
+      "value": "newfile.txt"
+    },
+    {
+      "name": "InactivityTimeout",
+      "target": "Host",
+      "value": "0"
+    }
+  ]
+}
+```
+
+**12. Delete Item**
+
+DELETE Request
+```
+http://localhost:9098/production/items/RestProduction.Demo.NewProduction/NewBusinessOperation
+```
+
+Response 200:
+```
+{
+  "name": "RestProduction.Demo.NewProduction",
+  "description": "new demo production",
+  "actor_pool_size": 1,
+  "log_general_trace_events": 0,
+  "testing_enabled": 0,
+  "settings": [
+    {
+      "name": "ShutdownTimeout",
+      "target": "Adapter",
+      "value": "180"
+    }
+  ],
+  "items": []
+}
+```
+
+
+## Next steps
 * Search messages 
 * Re-send message
 * Search Event Log
