@@ -53,7 +53,7 @@ Open localhost:9098/swagger-ui/index.html and enter http://localhost:9098/produc
 
 This Packege includes a simple demo production (RestProduction.Demo.Production)
 
-1. Get List of Productions
+**1. Get List of Productions**
 
 GET Request
 ```
@@ -74,7 +74,7 @@ Response 200
 }
 ```
 
-2. Start Production
+**2. Start Production**
 
 GET Request
 ```
@@ -91,7 +91,7 @@ Response 202
 
 Use /status/{production} request to get the result of Start Production method
 
-3. Stop Production
+**3. Stop Production**
 
 GET Request
 ```
@@ -111,7 +111,7 @@ Use /status/{production} request to get the result of Stop Production method
 
 
 
-4. Get Production Status
+**4. Get Production Status**
 
 Returns current production status and results of StartProduction, StopProduction and UpdateProduction methods.
 
@@ -134,9 +134,148 @@ Response 200
 }
 ```
 
+**5. Get Production Summary** 
 
+Returns status of the Production and all production Items, and array of Queues for running Productions 
 
+GET Request
+```
+http://localhost:9098/production/summary/RestProduction.Demo.Production
+```
 
+Response 200
+```
+{
+  "production_name": "RestProduction.Demo.Production",
+  "status": "Running",
+  "last_start_datetime": "2020-04-26 13:23:00",
+  "last_stop_datetime": "",
+  "BusinessOperation": [
+    {
+      "name": "BO1",
+      "enabled": 1,
+      "status": "ok"
+    }
+  ],
+  "queues": [
+    {
+      "name": "BO1",
+      "count": "0"
+    },
+    {
+      "name": "Ens.Actor",
+      "count": "0"
+    },
+    {
+      "name": "Ens.Alarm",
+      "count": "0"
+    },
+    {
+      "name": "Ens.ScheduleHandler",
+      "count": "0"
+    }
+  ],
+  "suspended_messages_count": 0
+}
+```
+
+**6. Get Production Settings and production Items**
+
+GET Request
+```
+http://localhost:9098/production/productions/RestProduction.Demo.Production
+```
+
+Response 200
+
+```
+{
+  "name": "RestProduction.Demo.Production",
+  "description": "",
+  "actor_pool_size": 1,
+  "log_general_trace_events": 0,
+  "testing_enabled": "",
+  "settings": [
+    {
+      "name": "ShutdownTimeout",
+      "target": "Adapter",
+      "value": "120"
+    },
+    {
+      "name": "UpdateTimeout",
+      "target": "Adapter",
+      "value": "10"
+    },
+    {
+      "name": "AlertNotificationManager",
+      "target": "Adapter",
+      "value": ""
+    },
+    {
+      "name": "AlertNotificationOperation",
+      "target": "Adapter",
+      "value": ""
+    },
+    {
+      "name": "AlertNotificationRecipients",
+      "target": "Adapter",
+      "value": ""
+    },
+    {
+      "name": "AlertActionWindow",
+      "target": "Adapter",
+      "value": "60"
+    }
+  ],
+  "items": [
+    {
+      "name": "BO1"
+    }
+  ]
+}
+```
+In Settings array all "ModifiedSettings" are shown.
+
+**7. Create new production**
+
+POST Request
+```
+http://localhost:9098/production/productions/RestProduction.Demo.NewProduction
+```
+body:
+```
+{
+  "description": "new demo production",
+  "actor_pool_size": 2,
+  "log_general_trace_events": 1,
+  "testing_enabled": 1,
+  "settings": [
+    {
+      "name": "ShutdownTimeout",
+      "target": "Adapter",
+      "value": "180"
+    }]}
+```
+
+Response 200
+
+```
+{
+  "name": "RestProduction.Demo.NewProduction",
+  "description": "new demo production",
+  "actor_pool_size": 2,
+  "log_general_trace_events": 1,
+  "testing_enabled": 1,
+  "settings": [
+    {
+      "name": "ShutdownTimeout",
+      "target": "Adapter",
+      "value": "180"
+    }
+  ],
+  "items": []
+}
+```
 
 # Next steps
 * Search messages 
