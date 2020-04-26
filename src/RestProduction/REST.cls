@@ -8,19 +8,19 @@ Parameter CONTENTTYPE = "application/json";
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
 <Routes>
-    <!--Start Production ++ -->
+    <!--Start Production -->
     <Route Url="/start/:production" Method="GET" Call="Start"/>
 
-    <!--Start Production ++ -->
+    <!--Start Production -->
     <Route Url="/stop/:production" Method="GET" Call="Stop"/>
 
-    <!--Get Production Status ++ -->
+    <!--Get Production Status -->
     <Route Url="/status/:production" Method="GET" Call="Status"/>
 
-    <!--Get Production Summary ++ -->
+    <!--Get Production Summary -->
     <Route Url="/summary/:production" Method="GET" Call="Summary"/>
 
-    <!--Get List of all productions in current namespace and their statuses ++ -->
+    <!--Get List of all productions in current namespace and their statuses -->
     <Route Url="/productions" Method="GET" Call="ProductionList"/>
 
     <!--Get Production Settings and production Items -->
