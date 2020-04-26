@@ -45,7 +45,101 @@ Or you can install [swagger-ui](https://openexchange.intersystems.com/package/ir
 ```
 zpm:IRISAPP>install swagger-ui
 ``` 
-And check the documentation on localhost:52773/swagger-ui/index.html
+Open localhost:9098/swagger-ui/index.html and enter http://localhost:9098/production/_spec (instead of http://localhost:52773/crud/_spec).
 
 
-# Testing 
+
+# Examples
+
+This Packege includes a simple demo production (RestProduction.Demo.Production)
+
+1. Get List of Productions
+
+GET Request
+```
+http://localhost:9098/production/productions
+```
+
+Response 200
+```
+{
+  "productions": [
+    {
+      "production_name": "RestProduction.Demo.Production",
+      "status": "Stopped",
+      "last_start_datetime": "",
+      "last_stop_datetime": ""
+    }
+  ]
+}
+```
+
+2. Start Production
+
+GET Request
+```
+http://localhost:9098/production/start/RestProduction.Demo.Production
+```
+
+Response 202
+```
+{
+  "type": "ok",
+  "message": "Production RestProduction.Demo.Production is starting in job 807"
+}
+```
+
+Use /status/{production} request to get the result of Start Production method
+
+3. Stop Production
+
+GET Request
+```
+http://localhost:9098/production/stop/RestProduction.Demo.Production
+```
+
+Response 202
+
+```
+{
+  "type": "ok",
+  "message": "Production RestProduction.Demo.Production is stopping in job:1060"
+}
+```
+
+Use /status/{production} request to get the result of Stop Production method
+
+
+
+4. Get Production Status
+
+Returns current production status and results of StartProduction, StopProduction and UpdateProduction methods.
+
+GET Request
+```
+http://localhost:9098/production/status/RestProduction.Demo.Production
+```
+
+Response 200
+```
+{
+  "name": "RestProduction.Demo.Production",
+  "status": "Running",
+  "StartProduction": {
+    "job": "807",
+    "ts-start": "2020-04-26 12:58:11",
+    "ts-stop": "2020-04-26 12:58:11",
+    "status": 1
+  }
+}
+```
+
+
+
+
+
+# Next steps
+* Search messages 
+* Re-send message
+* Search Event Log
+* Testing Service API
