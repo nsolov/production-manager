@@ -121,10 +121,14 @@ ClassMethod SwaggerSpec() As %Status
 {
   Set tSC = ##class(%REST.API).GetWebRESTApplication($NAMESPACE, %request.Application, .swagger)
   Do swagger.info.%Remove("x-ISC_Namespace")
-  Set swagger.basePath = "/production"
+  If (%request.Application'="/")&&($Extract(%request.Application,*)="/"){
+    Set swagger.basePath = $Extract(%request.Application,1,*-1)
+  } Else {
+    Set swagger.basePath = %request.Application
+  }
   Set swagger.info.title = "REST Production Manager"
   Set swagger.info.version = "0.1"
-  Set swagger.host = "localhost:9098"
+  Set swagger.host = $Get(%request.CgiEnvs("SERVER_NAME"))_":"_$Get(%request.CgiEnvs("SERVER_PORT"))
   Return ..%ProcessResult($$$OK, swagger)
 }
 

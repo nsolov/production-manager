@@ -493,6 +493,10 @@ Response 200:
 }
 ```
 
+## Limitations
+
+Doesn't support multiple items with the same name
+
 
 ## Next steps
 * Search messages 
