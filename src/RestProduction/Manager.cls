@@ -37,13 +37,6 @@ ClassMethod ProductionStatus(pProductionName As %String = "") As %Library.Dynami
         Do jResult.%Set(key,jo)
     }
 
-    /*$$$ThrowOnError(##class(Ens.Director).GetProductionStatus(.tProductionName, .status))
-    Set jResult."production_name" = pProductionName
-    If (pProductionName'=tProductionName) {
-        Set jResult."status" = "Stopped"
-    } Else {
-        Set jResult."status" = ##class(Ens.Config.Production).ProductionStateToText(status)
-    }*/
     Return jResult
 }
 
@@ -107,7 +100,7 @@ ClassMethod DeleteItem(pProductionName As %String, pItemName As %String) As %Lib
     }
     Do tProduction.RemoveItem(tItem)
     $$$ThrowOnError(tProduction.%Save())
-    Do ..UpdateProductionIfNecessary()  
+    Do ..UpdateProductionIfNecessary(pProductionName)  
     Return ..GetProductionSettings(pProductionName, "Settings")
 }
 
@@ -145,7 +138,7 @@ ClassMethod UpdateItemSettings(pProductionName As %String, pItemName As %String,
     }
     //Do tItem.Production.SaveToClass()
     $$$ThrowOnError(tItem.%Save())
-    Do ..UpdateProductionIfNecessary(pSettings.%Get("_timeout",10), pSettings.%Get("_force",0))  
+    Do ..UpdateProductionIfNecessary(pProductionName,pSettings.%Get("_timeout",10), pSettings.%Get("_force",0))  
     Return ..GetItemSettings(pProductionName, pItemName, "Settings")
 }
 
