@@ -3,11 +3,11 @@
   <Document name="production-manager.ZPM">
     <Module>
       <Name>production-manager</Name>
-      <Version>1.0.5</Version>
+      <Version>1.0.6</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="RestProduction.PKG"/>
-     
+      <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
        <CSPApplication 
         Url="/production"
         Recurse="1"
