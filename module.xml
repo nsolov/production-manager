@@ -3,7 +3,7 @@
   <Document name="production-manager.ZPM">
     <Module>
       <Name>production-manager</Name>
-      <Version>1.0.6a</Version>
+      <Version>1.0.6+a</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="RestProduction.PKG"/>
